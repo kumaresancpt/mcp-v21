@@ -1,0 +1,36 @@
+:root {
+  --primary: #5B21B6;
+  --primary-hover: #4C1D95;
+  --dark-text: #353638;
+  --body-text: #3B3B3B;
+  --muted-text: #8390A2;
+  --input-border: #B9B9B9;
+  --input-bg: #ffffff;
+  --pill-bg: #F3F3F3;
+  --inactive-tab: #3C3C3C;
+  --footer-text: #292D32;
+  --checkbox-border: #252525;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input::placeholder {
+  color: var(--muted-text);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+}
