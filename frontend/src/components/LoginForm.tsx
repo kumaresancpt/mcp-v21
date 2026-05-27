@@ -118,7 +118,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ selectedRole }) => {
         }))
         return
       }
-      const data = await response.json() as { redirectUrl?: string }
+      const data = await response.json() as { redirectUrl?: string; message?: string; role?: string }
+      
+      // Store the session token in localStorage so ProtectedRoute and API calls can access it
+      if (data.message) {
+        localStorage.setItem('accessToken', data.message)
+      }
+      
+      // Redirect to dashboard or home
       window.location.href = data.redirectUrl ?? '/'
     } catch {
       setState((prev) => ({

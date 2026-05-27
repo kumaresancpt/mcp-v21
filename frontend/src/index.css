@@ -1,15 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --primary: #5B21B6;
   --primary-hover: #4C1D95;
-  --dark-text: #353638;
-  --body-text: #3B3B3B;
-  --muted-text: #8390A2;
-  --input-border: #B9B9B9;
+  --dark-text: #171717;
+  --body-text: #171717;
+  --muted-text: #727272;
+  --input-border: #E2E2E2;
   --input-bg: #ffffff;
-  --pill-bg: #F3F3F3;
-  --inactive-tab: #3C3C3C;
-  --footer-text: #292D32;
-  --checkbox-border: #252525;
+  --pill-bg: #FAF8F5;
+  --inactive-tab: #727272;
+  --footer-text: #171717;
+  --checkbox-border: #E2E2E2;
+  --text-primary: #171717;
+  --text-secondary: #727272;
+  --bg-primary: #FAF8F5;
+  --border-light: #E2E2E2;
+  --border-medium: #BABABA;
+  --table-header: #F6F6F6;
+  --status-success: #10b981;
+  --status-warning: #f59e0b;
+  --status-info: #8b5cf6;
+  --status-error: #ef4444;
 }
 
 * {
@@ -18,19 +32,39 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'Inter', sans-serif;
+  @apply font-inter text-text-primary bg-bg-primary;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 input::placeholder {
-  color: var(--muted-text);
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
+  @apply text-text-secondary;
 }
 
 a {
   text-decoration: none;
 }
+
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:opacity-90 transition-all;
+  }
+  
+  .btn-secondary {
+    @apply px-4 py-2 bg-border-light text-text-primary rounded-lg font-semibold hover:opacity-90 transition-all;
+  }
+  
+  .input-field {
+    @apply w-full px-3 py-2 border border-border-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary;
+  }
+  
+  .table-header {
+    @apply bg-table-header border-b border-border-medium text-text-secondary font-semibold text-xs;
+  }
+}
+

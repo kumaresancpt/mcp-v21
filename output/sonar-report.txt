@@ -1,0 +1,21 @@
+# SonarQube Code Quality Report — SCRUM-18
+
+**Status: SKIPPED**
+
+**Reason:** SonarQube MCP server unavailable (Unknown url : /api/v2/system/health)
+
+**Fix:** Ensure the SonarQube MCP server is configured in mcp.json with:
+- SONARQUBE_URL environment variable set to the SonarQube instance URL
+- SONARQUBE_TOKEN environment variable set to a valid authentication token
+- Network connectivity to the SonarQube server verified
+
+**Summary**
+- Total Issues: 0 (not scanned)
+- Blockers: 0
+- Critical: 0
+- Major: 0 (not scanned)
+- Minor: 0 (not scanned)
+- Info: 0 (not scanned)
+
+**Report Generation Time:** 2026-05-27T00:00:00Z
+**Pipeline Status:** CONTINUING (non-blocking)

@@ -4,6 +4,7 @@ using System.Threading.RateLimiting;
 using VmsBackend.Data;
 using VmsBackend.Middleware;
 using VmsBackend.Services;
+using VmsBackend.Services.BackgroundJobs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IAuditLogService, AuditLogService>();
 builder.Services.AddScoped<IOtpService, OtpService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IDataEncryptionService, DataEncryptionService>();
+builder.Services.AddScoped<IVisitorService, VisitorService>();
+builder.Services.AddScoped<IApprovalService, ApprovalService>();
+builder.Services.AddScoped<IPhotoUploadService, PhotoUploadService>();
+builder.Services.AddScoped<IApprovalNotificationService, ApprovalNotificationService>();
+builder.Services.AddScoped<IQrCodeService, QrCodeService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
 // CORS
 var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()
@@ -50,7 +58,12 @@ builder.Services.AddRateLimiter(options =>
 });
 
 // Controllers + Swagger — Swagger enabled in ALL environments (no IsDevelopment guard)
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
+        options.JsonSerializerOptions.WriteIndented = true;
+    });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
