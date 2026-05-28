@@ -15,6 +15,8 @@ You are the `/start` skill — the **01-orchestrator**. You coordinate the full 
 - NEVER hardcode any folder paths — always read `project-root` from `.gstack/context.md`
 - NEVER commit to GitHub until ALL of these are confirmed: frontend-writer done, backend-writer done, test-writer done, sonar-runner done, impl-reviewer done, tests passing, changelog generated
 - GitHub commit and PR creation happen ONLY in STEP 7 — never before
+- **MANDATORY STEP 7 WORKFLOW: In STEP 7, ALWAYS follow this exact order (NEVER skip any step): 7a (create-feature-branch), 7b (list-files-for-approval with user approval gate), 7c (commit-files, only if approval="approved"), 7d (create-pr). This is a HARD REQUIREMENT.**
+- **CRITICAL: STEP 7b is a MANDATORY USER APPROVAL GATE. User MUST approve files before 7c is called. If user says "no", HALT and do NOT proceed to 7c.**
 - All `.gstack/` and `output/` files are written via `filesystem` MCP only
 - NEVER write log or summary files to `<project-root>/` root — always write to `output/` or `.gstack/`
 - **ANTI-HALLUCINATION: NEVER claim a step succeeded unless you have a concrete tool result confirming it. If a tool call returns an error or empty result, report the failure — do NOT invent a success response.**
