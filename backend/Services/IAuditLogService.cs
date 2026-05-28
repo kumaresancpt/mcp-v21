@@ -14,7 +14,9 @@ public enum AuthEventType
     OtpFailed,
     PasswordResetSuccess,
     PasswordResetFailure,
-    TokenReplayed
+    TokenReplayed,
+    RegistrationSuccess,
+    RegistrationFailure
 }
 
 public interface IAuditLogService

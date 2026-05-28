@@ -10,6 +10,10 @@ public class User
     [Column("id")]
     public Guid Id { get; set; } = Guid.NewGuid();
 
+    [Column("name")]
+    [MaxLength(200)]
+    public string? Name { get; set; }
+
     [Column("username")]
     [MaxLength(100)]
     public string Username { get; set; } = string.Empty;
@@ -18,12 +22,22 @@ public class User
     [MaxLength(255)]
     public string? Email { get; set; }
 
+    [Column("phone_number")]
+    [MaxLength(20)]
+    public string? PhoneNumber { get; set; }
+
     [Column("password_hash")]
     public string PasswordHash { get; set; } = string.Empty;
 
     [Column("role")]
     [MaxLength(50)]
     public string Role { get; set; } = "Receptionist";
+
+    [Column("is_active")]
+    public bool IsActive { get; set; } = true;
+
+    [Column("is_verified")]
+    public bool IsVerified { get; set; } = false;
 
     [Column("failed_attempt_count")]
     public int FailedAttemptCount { get; set; } = 0;

@@ -12,6 +12,7 @@ public class SessionValidationMiddleware
     private static readonly HashSet<string> PublicPaths = new(StringComparer.OrdinalIgnoreCase)
     {
         "/api/auth/login",
+        "/api/auth/register",
         "/api/auth/forgot-password",
         "/api/auth/reset-password",
         "/swagger",
