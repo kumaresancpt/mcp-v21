@@ -161,4 +161,41 @@ public class AuthController : ControllerBase
             return StatusCode(500, new ErrorResponse { Detail = "An internal error occurred." });
         }
     }
+
+    /// <summary>Register — AC-B1 through AC-B10: User registration endpoint</summary>
+    [HttpPost("register")]
+    [ProducesResponseType(typeof(RegisterResponse), 201)]
+    [ProducesResponseType(typeof(ErrorResponse), 400)]
+    public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+    {
+        try
+        {
+            // AC-B10: Check for required fields via ModelState
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                var firstError = errors.FirstOrDefault()?.ErrorMessage ?? "Validation failed";
+                return BadRequest(new ErrorResponse { Detail = firstError });
+            }
+
+            // Call registration service
+            var (success, response, errorDetail) = await _auth.RegisterUserAsync(request);
+
+            if (success)
+            {
+                // AC-B8: Return 201 Created with success message (no passwordHash)
+                return CreatedAtAction(nameof(Register), new { userId = response.UserId }, response);
+            }
+            else
+            {
+                // AC-B2, AC-B3, AC-B4, AC-B5, AC-B10: Return 400 with error detail
+                return BadRequest(new ErrorResponse { Detail = errorDetail });
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Registration error");
+            return StatusCode(500, new ErrorResponse { Detail = "An internal error occurred during registration." });
+        }
+    }
 }
